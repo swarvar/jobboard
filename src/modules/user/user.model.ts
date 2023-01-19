@@ -46,6 +46,10 @@ const userSchema = new mongoose.Schema<IUserDoc, IUserModel>(
       type: Boolean,
       default: false,
     },
+    jobs: {
+      posted: [mongoose.Schema.Types.ObjectId],
+      applied: [mongoose.Schema.Types.ObjectId],
+    },
   },
   {
     timestamps: true,

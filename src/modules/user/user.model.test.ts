@@ -11,6 +11,10 @@ describe('User model', () => {
         email: faker.internet.email().toLowerCase(),
         password: 'password1',
         role: 'user',
+        jobs: {
+          posted: [],
+          applied: [],
+        },
       };
     });
 
