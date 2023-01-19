@@ -8,7 +8,7 @@ const swaggerDefinition = {
     description: 'This is a node express mongoose boilerplate in typescript',
     license: {
       name: 'MIT',
-      url: 'https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate.git',
+      url: 'https://github.com/swarvar/jobboard.git',
     },
   },
   servers: [
