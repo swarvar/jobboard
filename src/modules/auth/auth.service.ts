@@ -27,7 +27,11 @@ export const loginUserWithEmailAndPassword = async (email: string, password: str
  * @returns {Promise<void>}
  */
 export const logout = async (refreshToken: string): Promise<void> => {
-  const refreshTokenDoc = await Token.findOne({ token: refreshToken, type: tokenTypes.REFRESH, blacklisted: false });
+  const refreshTokenDoc = await Token.findOne({
+    token: refreshToken,
+    type: tokenTypes.REFRESH,
+    blacklisted: false,
+  });
   if (!refreshTokenDoc) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Not found');
   }
@@ -87,7 +91,9 @@ export const verifyEmail = async (verifyEmailToken: any): Promise<IUserDoc | nul
       throw new Error();
     }
     await Token.deleteMany({ user: user.id, type: tokenTypes.VERIFY_EMAIL });
-    const updatedUser = await updateUserById(user.id, { isEmailVerified: true });
+    const updatedUser = await updateUserById(user.id, {
+      isEmailVerified: true,
+    });
     return updatedUser;
   } catch (error) {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Email verification failed');

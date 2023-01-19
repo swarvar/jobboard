@@ -1,4 +1,4 @@
-import mongoose, { Model, Document, Schema } from 'mongoose';
+import mongoose, { Model, Document } from 'mongoose';
 import { QueryResult } from '../paginate/paginate';
 import { AccessAndRefreshTokens } from '../token/token.interfaces';
 
@@ -8,10 +8,6 @@ export interface IUser {
   password: string;
   role: string;
   isEmailVerified: boolean;
-  jobs: {
-    posted: Array<Schema.Types.ObjectId>;
-    applied: Array<Schema.Types.ObjectId>;
-  };
 }
 
 export interface IUserDoc extends IUser, Document {

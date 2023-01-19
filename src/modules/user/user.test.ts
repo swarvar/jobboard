@@ -63,10 +63,6 @@ describe('User routes', () => {
         email: faker.internet.email().toLowerCase(),
         password: 'password1',
         role: 'user',
-        jobs: {
-          posted: [],
-          applied: [],
-        },
       };
     });
 
@@ -93,7 +89,12 @@ describe('User routes', () => {
       if (!dbUser) return;
 
       expect(dbUser.password).not.toBe(newUser.password);
-      expect(dbUser).toMatchObject({ name: newUser.name, email: newUser.email, role: newUser.role, isEmailVerified: false });
+      expect(dbUser).toMatchObject({
+        name: newUser.name,
+        email: newUser.email,
+        role: newUser.role,
+        isEmailVerified: false,
+      });
     });
 
     test('should be able to create an admin as well', async () => {
@@ -558,7 +559,11 @@ describe('User routes', () => {
       expect(dbUser).toBeDefined();
       if (!dbUser) return;
       expect(dbUser.password).not.toBe(updateBody.password);
-      expect(dbUser).toMatchObject({ name: updateBody.name, email: updateBody.email, role: 'user' });
+      expect(dbUser).toMatchObject({
+        name: updateBody.name,
+        email: updateBody.email,
+        role: 'user',
+      });
     });
 
     test('should return 401 error if access token is missing', async () => {
