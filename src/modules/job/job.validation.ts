@@ -28,13 +28,13 @@ export const getJobs = {
 
 export const getJob = {
   params: Joi.object().keys({
-    jobId: Joi.string().custom(objectId),
+    JobId: Joi.string().custom(objectId),
   }),
 };
 
 export const updateJob = {
   params: Joi.object().keys({
-    jobId: Joi.required().custom(objectId),
+    JobId: Joi.required().custom(objectId),
   }),
   body: Joi.object()
     .keys({
@@ -46,6 +46,6 @@ export const updateJob = {
 
 export const deleteJob = {
   params: Joi.object().keys({
-    jobId: Joi.string().custom(objectId),
+    JobId: Joi.string().custom(objectId),
   }),
 };

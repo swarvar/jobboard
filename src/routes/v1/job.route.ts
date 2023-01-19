@@ -16,4 +16,8 @@ router
   .patch(auth('manageJobs'), validate(jobValidation.updateJob), jobController.updateJob)
   .delete(auth('manageJobs'), validate(jobValidation.deleteJob), jobController.deleteJob);
 
+router
+  .route('/apply/:JobId')
+  .patch(auth('manageJobs'), validate(jobValidation.updateJob), jobController.updateJob)
+
 export default router;

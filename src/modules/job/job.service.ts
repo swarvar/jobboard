@@ -34,12 +34,12 @@ export const getJobById = async (id: mongoose.Types.ObjectId): Promise<IJobDoc |
 
 /**
  * Update job by id
- * @param {mongoose.Types.ObjectId} jobId
+ * @param {mongoose.Types.ObjectId} JobId
  * @param {UpdateJobBody} updateBody
  * @returns {Promise<IJobDoc | null>}
  */
-export const updateJobById = async (jobId: mongoose.Types.ObjectId, updateBody: UpdateJobBody): Promise<IJobDoc | null> => {
-  const job = await getJobById(jobId);
+export const updateJobById = async (JobId: mongoose.Types.ObjectId, updateBody: UpdateJobBody): Promise<IJobDoc | null> => {
+  const job = await getJobById(JobId);
   if (!job) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Job not found');
   }
@@ -50,11 +50,11 @@ export const updateJobById = async (jobId: mongoose.Types.ObjectId, updateBody: 
 
 /**
  * Delete Job by id
- * @param {mongoose.Types.ObjectId} jobId
+ * @param {mongoose.Types.ObjectId} JobId
  * @returns {Promise<IJobDoc | null>}
  */
-export const deleteJobById = async (jobId: mongoose.Types.ObjectId): Promise<IJobDoc | null> => {
-  const job = await getJobById(jobId);
+export const deleteJobById = async (JobId: mongoose.Types.ObjectId): Promise<IJobDoc | null> => {
+  const job = await getJobById(JobId);
   if (!job) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Job not found');
   }
