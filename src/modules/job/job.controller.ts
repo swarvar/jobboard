@@ -11,7 +11,7 @@ export const createJob = catchAsync(async (req: Request | any, res: Response | a
 });
 
 export const getJobs = catchAsync(async (req: Request | any, res: Response | any) => {
-  const filter = pick(req.query, ['title', 'description', 'email', 'skills', 'experience']);
+  const filter = pick(req.query, ['skills', 'experience', 'postedById']);
   const options: IOptions = pick(req.query, ['sortBy', 'limit', 'page', 'projectBy']);
   const result = await jobService.queryJobs(filter, options);
   res.send(result);
