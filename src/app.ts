@@ -6,6 +6,7 @@ import compression from 'compression';
 import cors from 'cors';
 import passport from 'passport';
 import httpStatus from 'http-status';
+import multer, { Multer } from 'multer';
 import config from './config/config';
 import { morgan } from './modules/logger';
 import { jwtStrategy } from './modules/auth';
@@ -14,6 +15,7 @@ import { ApiError, errorConverter, errorHandler } from './modules/errors';
 import routes from './routes/v1';
 
 const app: Express = express();
+const upload: Multer = multer();
 
 if (config.env !== 'test') {
   app.use(morgan.successHandler);
@@ -32,6 +34,15 @@ app.use(express.json());
 
 // parse urlencoded request body
 app.use(express.urlencoded({ extended: true }));
+
+// for parsing multipart/form-data
+app.use(
+  upload.fields([
+    { name: 'resume', maxCount: 1 },
+    { name: 'cover_letter', maxCount: 1 },
+  ])
+);
+app.use(express.static('public'));
 
 // sanitize request data
 app.use(xss());
