@@ -67,6 +67,10 @@ const paginate = (schema: Schema) => {
     const skip = (page - 1) * limit;
 
     const countPromise = this.countDocuments(filter).exec();
+    if (filter['skills']) {
+      const skills = filter['skills'].split(',');
+      filter['skills'] = { $in: skills };
+    }
     let docsPromise = this.find(filter).sort(sort).skip(skip).limit(limit).select(project);
 
     if (options.populate) {

@@ -18,8 +18,17 @@ export const createJob = {
 
 export const getJobs = {
   query: Joi.object().keys({
+    // filter
     title: Joi.string(),
+    description: Joi.string(),
+    email: Joi.string().email(),
+    skills: Joi.string(),
     experience: Joi.number(),
+    postedById: Joi.custom(objectId),
+    applicantIds: Joi.array().items(Joi.custom(objectId)),
+    applicantId: Joi.custom(objectId),
+
+    // options
     sortBy: Joi.string(),
     projectBy: Joi.string(),
     limit: Joi.number().integer(),
