@@ -43,7 +43,13 @@ export const updateJobById = async (JobId: mongoose.Types.ObjectId, updateBody: 
   if (!job) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Job not found');
   }
-  Object.assign(Job, updateBody);
+
+  if (updateBody.applicantId) {
+    job.applicantIds.push(updateBody.applicantId);
+  } else {
+    Object.assign(job, updateBody);
+  }
+
   await job.save();
   return job;
 };

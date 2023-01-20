@@ -5,10 +5,11 @@ import { objectId } from '../validate';
 const createJobBody: Record<keyof NewCreatedJob, any> = {
   title: Joi.string().required(),
   description: Joi.string().required(),
-  email: Joi.string().required().email(),
-  skills: Joi.array().items(Joi.string()),
+  email: Joi.string().email().required(),
+  skills: Joi.array().items(Joi.string()).required(),
   experience: Joi.number().required(),
   postedById: Joi.custom(objectId).required(),
+  applicantIds: Joi.array().items(Joi.custom(objectId)).optional(),
 };
 
 export const createJob = {
@@ -38,8 +39,14 @@ export const updateJob = {
   }),
   body: Joi.object()
     .keys({
+      title: Joi.string(),
+      description: Joi.string(),
       email: Joi.string().email(),
-      name: Joi.string(),
+      skills: Joi.array().items(Joi.string()),
+      experience: Joi.number(),
+      postedById: Joi.custom(objectId),
+      applicantIds: Joi.array().items(Joi.custom(objectId)),
+      applicantId: Joi.custom(objectId),
     })
     .min(1),
 };
