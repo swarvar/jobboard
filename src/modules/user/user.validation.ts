@@ -15,6 +15,7 @@ export const createUser = {
 
 export const getUsers = {
   query: Joi.object().keys({
+    jobId: Joi.string().custom(objectId),
     name: Joi.string(),
     role: Joi.string(),
     sortBy: Joi.string(),

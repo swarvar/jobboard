@@ -21,6 +21,10 @@ export async function createJob(jobBody: NewCreatedJob): Promise<IJobDoc> {
  * @returns {Promise<QueryResult>}
  */
 export const queryJobs = async (filter: Record<string, any>, options: IOptions): Promise<QueryResult> => {
+  if (filter['skills']) {
+    const skills = filter['skills'].split(',');
+    Object.assign(filter, { skills: { $in: skills } });
+  }
   const jobs = await Job.paginate(filter, options);
   return jobs;
 };

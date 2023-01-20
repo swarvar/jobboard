@@ -25,7 +25,7 @@ const jobSchema = new mongoose.Schema<IJobDoc, IJobModel>(
       },
     },
     skills: [String],
-    experience: [Number],
+    experience: Number,
     postedById: mongoose.Schema.Types.ObjectId,
     applicantIds: [mongoose.Schema.Types.ObjectId],
   },
