@@ -7,7 +7,7 @@ yarn
 ```
 
 ```
-yarn start
+yarn dev
 ```
 
 Assignment x
